@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Instant Click Speed</title>
+</head>
+<body>
+  <h1>Instant Click Speed Game ⚡</h1>
+  <p>Click the button as soon as it appears!</p>
+  <h2 id="result">Your time will show here...</h2>
+  <button id="start">Start Game</button>
+  <button id="clickBtn" style="display:none;">CLICK ME!</button>
+
+  <script>
+    let startTime;
+    const startBtn = document.getElementById("start");
+    const clickBtn = document.getElementById("clickBtn");
+    const result = document.getElementById("result");
+
+    startBtn.onclick = () => {
+      result.innerText = "Wait for the button...";
+      startBtn.style.display = "none";
+      setTimeout(() => {
+        clickBtn.style.display = "inline";
+        startTime = performance.now();
+      }, Math.random() * 1000 + 500); // short random delay
+    };
+
+    clickBtn.onclick = () => {
+      let reaction = ((performance.now() - startTime) / 1000).toFixed(3);
+      result.innerText = "Your time: " + reaction + " seconds!";
+      clickBtn.style.display = "none";
+      startBtn.style.display = "inline";
+    };
+  </script>
+</body>
+</html>
+<h2 id="result">Your reaction time will show here...</h2>
+<h2 id="best">Best score: --</h2>
+<h2 id="target">Target: Beat 0.5 seconds!</h2>
+
+<a href="game3.html">ANOTHER GAME</a>

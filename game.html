@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<a href="game.html">Click here to try again</a>
+  <meta charset="UTF-8">
+  <title>Brainrot Emoji Clicking Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #fff8f0;
+    }
+    #emoji {
+      font-size: 100px;
+      cursor: pointer;
+      margin-top: 40px;
+      user-select: none;
+    }
+    #score {
+      font-size: 28px;
+      margin-top: 20px;
+    }
+    #timer {
+      font-size: 22px;
+      margin-top: 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Steal a Brainrot!</h1>
+  <div id="emoji">🗿</div>
+  
+  <div id="score">Score: 0</div>
+  <div id="timer">Time left: 10</div>
+
+  <script>
+    let score = 0;
+    let timeLeft = 10;
+    const emoji = document.getElementById("emoji");
+    const scoreDisplay = document.getElementById("score");
+    const timerDisplay = document.getElementById("timer");
+
+    // Multiple emojis in the pool — not just one
+    const brainrots = [
+      "🗿","💀","🤡","🧌","🥴","👽","🦍","🍄","🦖","🪑",
+      "🧟","🐸","🦑","🪼","🦕","🙃","😵‍💫","👹","🐍","🦐"
+    ];
+
+    emoji.addEventListener("click", () => {
+      if (timeLeft > 0) {
+        score++;
+        scoreDisplay.textContent = "Score: " + score;
+        // Pick a random emoji from the list
+        const randomIndex = Math.floor(Math.random() * brainrots.length);
+        emoji.textContent = brainrots[randomIndex];
+      }
+    });
+
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timerDisplay.textContent = "Time left: " + timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        emoji.style.pointerEvents = "none"; // disable clicks
+        timerDisplay.textContent = "Game Over!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
+
+<h1>Highest score is 395.</h1>
+<h1>Can you beat it?</h1>
+
+<h1>Just click the emojis as fast as you can.</h1>
+
+<a href="game2.html">CLICK HERE FOR ANOTHER GAME</a>
